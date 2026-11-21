@@ -48,11 +48,15 @@ public class HookEntry implements IXposedHookLoadPackage {
     }
 
     private boolean isTarget(String pkg) {
-        return "com.google.android.gms".equals(pkg)
+        if (pkg == null) {
+            return false;
+        }
+        // LSPosed 作用域是总闸：本模块只会被加载进用户勾选的应用。
+        // 谷歌系包名一律放行——用户手动补勾的任何谷歌应用都真正生效，
+        // 不再被写死的名单挡住（v1.2 及以前勾了也不生效的根源）。
+        return pkg.startsWith("com.google.")
                 || "com.android.vending".equals(pkg)
-                || "com.google.android.googlequicksearchbox".equals(pkg)
-                || "com.google.android.apps.bard".equals(pkg)
-                || "com.google.android.youtube".equals(pkg);
+                || "com.android.chrome".equals(pkg);
     }
 
     /** 读设置界面保存的配置（分开的键）；任何失败逐项回退默认（美国/T-Mobile）。 */

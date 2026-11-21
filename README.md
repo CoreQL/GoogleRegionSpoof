@@ -17,6 +17,14 @@ SIM/网络国家码、运营商（MCC+MNC 与名称）、语言（Locale）、�
   **无法覆盖安装旧版**。请先**卸载旧版**，再安装新版，然后在 LSPosed 中**重新启用模块、
   重新勾选作用域**；旧版里选好的国家/运营商等配置**不会迁移**，请在新版里重新选择一次。
 
+## v1.3 更新
+
+- **推荐作用域补全**：从 5 个扩到 26 个谷歌应用（见下方「推荐作用域」）。
+- **修复手动补勾不生效**：v1.2 及以前，模块内部（`HookEntry.isTarget`）写死了与推荐名单
+  相同的 5 个包名，用户在 LSPosed 里手动补勾的其他谷歌应用会被直接放行返回、并不伪装。
+  v1.3 改为谷歌系包名一律放行，以 LSPosed 作用域勾选为总闸，补勾哪个生效哪个。
+- v1.2 的包名不变，覆盖安装即可，配置不丢。
+
 ## v1.1 新界面（仿 GlobalKit 的卡片式交互）
 
 - **主页**（整页可滚动，卡片式）：
@@ -70,13 +78,37 @@ v1.0 的旧配置（preset_id）首次打开会自动迁移。
 
 配置读取失败（文件不可读等）时自动回退默认（美国 / T-Mobile），不会不伪装、更不会崩溃。
 
-## 默认作用域（LSPosed 中默认勾选）
+## 推荐作用域（v1.3 起补全，共 26 个）
 
 - `com.google.android.gms`（Google Play 服务）
 - `com.android.vending`（Play 商店）
 - `com.google.android.googlequicksearchbox`（Google 应用）
 - `com.google.android.apps.bard`（Gemini）
 - `com.google.android.youtube`（YouTube）
+- `com.google.android.gsf`（Google 服务框架）
+- `com.google.android.gm`（Gmail）
+- `com.google.android.apps.docs`（云端硬盘）
+- `com.google.android.apps.translate`（翻译）
+- `com.google.android.apps.magazines`（Google 新闻）
+- `com.google.android.apps.walletnfcrel`（Google 钱包）
+- `com.google.android.apps.subscriptions.red`（Google One）
+- `com.google.android.apps.cloudconsole`（Google Cloud 控制台）
+- `com.google.android.apps.adm`（查找中心）
+- `com.google.android.apps.authenticator2`（身份验证器）
+- `com.google.ar.lens`（智能镜头）
+- `com.google.android.inputmethod.latin`（Gboard）
+- `com.google.android.apps.labs.language.tailwind`（NotebookLM）
+- `com.google.android.apps.privacy.wildlife`（VPN by Google）
+- `com.google.android.wearable.app.cn`（Wear OS）
+- `com.google.android.apps.youtube.music`（YouTube Music）
+- `com.google.android.apps.maps`（地图）
+- `com.google.android.apps.photos`（相册）
+- `com.android.chrome`（Chrome）
+- `com.google.android.play.games`（Play 游戏）
+- `com.google.android.videos`（Google TV）
+
+名单之外也行：v1.3 起模块内部不再写死包名，以 LSPosed 里的勾选为总闸——
+任何谷歌系应用（`com.google.*` 包名，以及 Play 商店、Chrome）手动补勾即生效。
 
 ## 使用方法
 
@@ -109,7 +141,7 @@ source ~/workspace/android-tools/env.sh   # JDK 17 + Android SDK 35（或等价�
 ```
 
 - 框架：经典 Xposed API 82（`libs/api-82.jar` 为官方 API 存根，仅编译期使用，不打包进 APK）；
-- 最低 Android 8.0（API 26）；当前版本 v1.2（versionCode 4）。
+- 最低 Android 8.0（API 26）；当前版本 v1.3（versionCode 5）。
 
 ## 借鉴与致谢
 

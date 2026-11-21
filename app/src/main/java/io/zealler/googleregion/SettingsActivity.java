@@ -38,6 +38,8 @@ public class SettingsActivity extends Activity {
         scroll.addView(root, new ScrollView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         setContentView(scroll);
+        // edge-to-edge 下避让状态栏/导航栏/挖孔，内容不再顶进状态栏
+        SystemBarInsets.applyTo(root);
 
         // 顶部返回行
         LinearLayout top = new LinearLayout(this);
@@ -148,7 +150,7 @@ public class SettingsActivity extends Activity {
         lp.topMargin = dp(10);
         row.addView(text("当前版本", 14, theme.text, false),
                 new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        row.addView(text("v1.1", 14, theme.subText, false));
+        row.addView(text("v1.1.1", 14, theme.subText, false));
         card.addView(row, lp);
         return withTopMargin(card, 12);
     }

@@ -77,6 +77,8 @@ public class MainActivity extends Activity {
         scroll.addView(root, new ScrollView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         setContentView(scroll);
+        // edge-to-edge 下避让状态栏/导航栏/挖孔，内容不再顶进状态栏
+        SystemBarInsets.applyTo(root);
         refresh();
     }
 

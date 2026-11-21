@@ -100,7 +100,7 @@ source ~/workspace/android-tools/env.sh   # JDK 17 + Android SDK 35（或等价�
 ```
 
 - 框架：经典 Xposed API 82（`libs/api-82.jar` 为官方 API 存根，仅编译期使用，不打包进 APK）；
-- 最低 Android 8.0（API 26）；当前版本 v1.1（versionCode 2）。
+- 最低 Android 8.0（API 26）；当前版本 v1.1.1（versionCode 3）。
 
 ## 借鉴与致谢
 

@@ -1,4 +1,4 @@
-package io.zealler.googleregion;
+package io.github.zealler9560.googleregion;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -27,7 +27,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  */
 public class HookEntry implements IXposedHookLoadPackage {
 
-    private static final String MODULE_PACKAGE = "io.zealler.googleregion";
+    private static final String MODULE_PACKAGE = "io.github.zealler9560.googleregion";
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {

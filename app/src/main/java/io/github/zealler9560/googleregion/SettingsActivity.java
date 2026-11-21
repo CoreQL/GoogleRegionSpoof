@@ -1,4 +1,4 @@
-package io.zealler.googleregion;
+package io.github.zealler9560.googleregion;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -150,7 +150,7 @@ public class SettingsActivity extends Activity {
         lp.topMargin = dp(10);
         row.addView(text("当前版本", 14, theme.text, false),
                 new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        row.addView(text("v1.1.1", 14, theme.subText, false));
+        row.addView(text("v1.2", 14, theme.subText, false));
         card.addView(row, lp);
         return withTopMargin(card, 12);
     }

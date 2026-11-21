@@ -1,7 +1,7 @@
 #!/bin/sh
 # 谷歌区域伪装 —— 手动工具链构建脚本
 # 用法：先 source ~/workspace/android-tools/env.sh，再执行 ./build.sh
-# 产物：build/GoogleRegionSpoof-v1.1.1.apk（muse 测试钥签名）
+# 产物：build/GoogleRegionSpoof-v1.2.apk（muse 测试钥签名）
 set -e
 
 PROJ="$(cd "$(dirname "$0")" && pwd)"
@@ -27,8 +27,8 @@ aapt2 link -o "$BUILD/base.apk" \
     --java "$BUILD/gen" \
     --min-sdk-version 26 \
     --target-sdk-version 35 \
-    --version-code 3 \
-    --version-name "1.1.1" \
+    --version-code 4 \
+    --version-name "1.2" \
     "$BUILD/res.zip"
 
 echo "== javac =="
@@ -52,9 +52,9 @@ zipalign -p -f 4 "$BUILD/app.apk" "$BUILD/aligned.apk"
 echo "== sign =="
 apksigner sign \
     --ks "$KS" --ks-pass pass:muse1234 --key-pass pass:muse1234 \
-    --out "$BUILD/GoogleRegionSpoof-v1.1.1.apk" "$BUILD/aligned.apk"
+    --out "$BUILD/GoogleRegionSpoof-v1.2.apk" "$BUILD/aligned.apk"
 
 echo "== verify =="
-apksigner verify --print-certs "$BUILD/GoogleRegionSpoof-v1.1.1.apk" | head -3
-ls -la "$BUILD/GoogleRegionSpoof-v1.1.1.apk"
+apksigner verify --print-certs "$BUILD/GoogleRegionSpoof-v1.2.apk" | head -3
+ls -la "$BUILD/GoogleRegionSpoof-v1.2.apk"
 echo "BUILD OK"

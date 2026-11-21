@@ -1,4 +1,4 @@
-package io.zealler.googleregion;
+package io.github.zealler9560.googleregion;
 
 /**
  * 配置键与解析逻辑：设置界面与 hook 侧共用。

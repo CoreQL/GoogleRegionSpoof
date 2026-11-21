@@ -8,6 +8,15 @@ SIM/网络国家码、运营商（MCC+MNC 与名称）、语言（Locale）、�
 > 很多谷歌服务是「IP + 客户端信号」一起看的，请配合代理（IP 出口与所选区域一致）使用，
 > 否则信号互相矛盾，效果会打折。
 
+## 包名（v1.2 起变更，升级必看）
+
+- 当前包名：`io.github.zealler9560.googleregion`
+- 本模块将上架 **LSPosed 官方仓库**，官方仓库中的仓库名即新包名。v1.2 为满足官方仓库
+  对包名的要求（使用 `io.github.<GitHub 用户名>` 前缀，或自有域名的倒置域名）更换了包名。
+- **从旧版升级**：旧版包名为 `io.zealler.googleregion`。包名变化后新版是一个全新应用，
+  **无法覆盖安装旧版**。请先**卸载旧版**，再安装新版，然后在 LSPosed 中**重新启用模块、
+  重新勾选作用域**；旧版里选好的国家/运营商等配置**不会迁移**，请在新版里重新选择一次。
+
 ## v1.1 新界面（仿 GlobalKit 的卡片式交互）
 
 - **主页**（整页可滚动，卡片式）：
@@ -100,7 +109,7 @@ source ~/workspace/android-tools/env.sh   # JDK 17 + Android SDK 35（或等价�
 ```
 
 - 框架：经典 Xposed API 82（`libs/api-82.jar` 为官方 API 存根，仅编译期使用，不打包进 APK）；
-- 最低 Android 8.0（API 26）；当前版本 v1.1.1（versionCode 3）。
+- 最低 Android 8.0（API 26）；当前版本 v1.2（versionCode 4）。
 
 ## 借鉴与致谢
 

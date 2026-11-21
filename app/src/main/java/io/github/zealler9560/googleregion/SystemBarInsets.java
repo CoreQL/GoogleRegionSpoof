@@ -1,4 +1,4 @@
-package io.zealler.googleregion;
+package io.github.zealler9560.googleregion;
 
 import android.graphics.Insets;
 import android.os.Build;

@@ -20,6 +20,7 @@ SIM/多卡/网络国家码、运营商（MCC+MNC 与名称）、语言列表（L
   - 同步 Hook `SubscriptionInfo`（`getCountryIso`、`getMccString`、`getMncString`、`getMcc`、`getMnc`、`getCarrierName`、`getDisplayName`），避免双卡设备上多卡接口泄露真实运营商与国家码。
 - **精细化 `LocaleList` 语言回退 + 语言独立开关**：
   - 构造 `[目标语言, 原系统语言...]`（如 `[en-US, zh-CN]`）注入 `LocaleList`、`Configuration.getLocales()` 与 `Resources.getConfiguration()`，兼顾地区检测与中文回退；
+  - 对 Google 应用（`com.google.android.googlequicksearchbox`）与 Gemini（`com.google.android.apps.bard`）自动跳过语言/Configuration Hook，避免 Gemini 主页与悬浮窗因内部语言校验触发无限重建闪动（其 SIM/多卡/运营商/时区伪装仍正常生效）；
   - 新增「接管应用语言（Locale）」独立开关（默认开启），方便在部分对语言变化敏感的应用中一键关闭排查。
 - **构建与设置优化**：
   - 关于页版本号改为动态读取；`build.sh` 支持环境变量传入签名参数并新增 GitHub Actions 自动构建。

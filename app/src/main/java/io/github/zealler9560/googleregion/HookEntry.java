@@ -31,6 +31,8 @@ public class HookEntry implements IXposedHookLoadPackage {
 
     private static final String MODULE_PACKAGE = "io.github.zealler9560.googleregion";
     private static final String GMS_PACKAGE = "com.google.android.gms";
+    private static final String GOOGLE_APP_PACKAGE = "com.google.android.googlequicksearchbox";
+    private static final String GEMINI_PACKAGE = "com.google.android.apps.bard";
     private static final String ANONYMIZED_BSSID = "02:00:00:00:00:00";
 
     @Override
@@ -43,7 +45,7 @@ public class HookEntry implements IXposedHookLoadPackage {
 
         hookTelephony(cl, cfg);
         hookSubscription(cl, cfg);
-        if (cfg.localeEnabled) {
+        if (cfg.localeEnabled && !shouldSkipLocaleHook(lpparam.packageName)) {
             hookLocaleAndConfiguration(cl, cfg);
         }
         if (cfg.timezoneEnabled) {
@@ -56,6 +58,15 @@ public class HookEntry implements IXposedHookLoadPackage {
         if (cfg.gpsEnabled) {
             hookGps(cl, lpparam.packageName, cfg);
         }
+    }
+
+    /**
+     * Google 应用（含 Gemini 主页/悬浮窗）内部会校验 Resources Configuration 与应用语言，
+     * 外部强改 Locale/Configuration 会触发无限 relaunch 抽搐，故自动跳过这两个包的语言 Hook，
+     * 仅保留其 SIM/多卡/运营商/时区伪装；GMS、Play 商店等其他包仍正常生效。
+     */
+    private boolean shouldSkipLocaleHook(String pkg) {
+        return GOOGLE_APP_PACKAGE.equals(pkg) || GEMINI_PACKAGE.equals(pkg);
     }
 
     private boolean isTarget(String pkg) {
